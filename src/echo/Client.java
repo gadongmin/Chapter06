@@ -44,15 +44,23 @@ public class Client {
 		// 스캐너 준비
 		Scanner sc = new Scanner(System.in);
 
-		// 메세지 입력
-		String msg = sc.nextLine();
-		bw.write(msg); // 쓰기실행
-		bw.newLine(); // 줄바꿈
-		bw.flush(); // 메세지 강제전
-		
-		String reMsg = br.readLine(); // 읽기실행
-		System.out.println("server:[ " + reMsg + " ]");
+		while (true) {
+			String msg = sc.nextLine(); // 입력대기
+			
+			if ("/q".equals(msg)) { // 종료 조건 설정
+				break;
+			}
+			
+			// 메세지 입력
+			bw.write(msg); // 쓰기실행
+			bw.newLine(); // 줄바꿈
+			bw.flush(); // 메세지 강제전
 
+			// 메세지 받기
+			String reMsg = br.readLine(); // 읽기실행
+			System.out.println("server:[ " + reMsg + " ]");
+		}
+		
 		System.out.println("==================================");
 		System.out.println("<클라이언트 종료>");
 

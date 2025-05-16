@@ -53,13 +53,21 @@ public class Server {
 		OutputStreamWriter osw= new OutputStreamWriter(out, "UTF-8");
 		BufferedWriter bw = new BufferedWriter(osw);
 		
-		String msg = br.readLine(); // 읽기실행
-		System.out.println("받은메세지: " + msg);
-		
 
-		bw.write("안녕하세요"); // 쓰기실행
-		bw.newLine(); // 줄바꿈
-		bw.flush(); // 메세지 강제전송		
+		
+		while(true) {
+			String msg = br.readLine(); // 읽기실행
+			if(msg == null) {
+				break;
+			}
+			System.out.println("받은메세지: " + msg);
+			
+			// 메세지 보내기
+			bw.write(msg); // 쓰기실행
+			bw.newLine(); // 줄바꿈
+			bw.flush(); // 메세지 강제전송
+			
+		}
 		
 		System.out.println("==================================");
 		System.out.println("<서버 종료>");
